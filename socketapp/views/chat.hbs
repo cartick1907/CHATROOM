@@ -1,0 +1,40 @@
+<h2>Welcome {{name}}</h2>
+<p>Welcome to {{title}}</p>
+
+<input type="text" class='message'></input>
+<button onclick="sendMSG()">SEND</button>
+
+
+<table class="chats">
+</table>
+<h1></h1>
+<script>
+
+
+    const message= document.querySelector('.message');
+    const socket=io('http://10.50.46.81:3000')
+
+
+    socket.on('connection')
+
+    socket.on('message', (data)=>{
+        const table=document.querySelector('.chats');
+        const row = table.insertRow(table.rows.length);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        cell1.innerHTML = data.name;
+        cell2.innerHTML = data.msg;
+    })
+
+    const sendMSG = ()=> {
+        const sender="{{name}}"
+        const say=message.value;
+        console.log(say);
+        const buffer ={
+            name: sender,
+            msg: say
+        };
+        socket.emit('message',buffer);
+    }
+
+</script>

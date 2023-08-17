@@ -1,0 +1,13 @@
+<h1>ENTER NAME</h1>
+<input type="text" class="username"></input>
+{{!-- <a href="http://10.50.46.81:3000/room?user=name"> --}}
+<button onclick="huihui()">Enter the room</button>
+{{!-- </a> --}}
+<script>
+    const huihui = ()=>{
+        const name=document.querySelector('.username').value;
+        window.location.href="http://10.50.46.81:3000/room?user="+name+""
+        console.log(name);
+    }
+
+</script>
